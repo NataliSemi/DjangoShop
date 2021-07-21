@@ -1,0 +1,89 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% trans "My shop" %}{% endblock %}</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
+  </head>
+  <body>
+    <div id="header">
+      <a href="/" class="logo">
+        <img src="{% static 'img/favicon.png' %}" alt="" href="">
+        {% trans "My shop" %}
+      </a>
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% get_language_info_list for LANGUAGES as languages %}
+      <div class="languages">
+        <p>{% trans "Language" %}:</p>
+        <ul class="languages">
+          {% for language in languages %}
+            <li>
+              <a href="/{{ language.code }}/"
+              {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+                {{ language.name_local }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+    <div id="subheader">
+      <div class="cart">
+        <p>
+        {% with total_items=cart|length %}
+          {% if total_items > 0 %}
+            {% trans "Your cart" %}:
+            <a href="{% url "cart:cart_detail" %}">
+              {% blocktrans with total=cart.get_total_price count items=total_items %}
+                {{ items }} item, ${{ total }}
+              {% plural %}
+                {{ items }} items, ${{ total }}
+              {% endblocktrans %}
+            </a>
+          {% else %}
+            {% trans "Your cart is empty." %}
+          {% endif %}
+        {% endwith %}
+      </p>
+      </div>
+    </div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+      <br>
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+
+  <footer>
+    <h4>Nat Semi &copy</h4>
+    <ul>
+        <li>
+            <a href="https://twitter.com/NataliSemi">
+                <img src="{% static 'icons/twitter 1.svg' %}" alt="twitter-social-media">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/nataliiasemi/">
+                <img src="{% static 'icons/instagram 1.svg' %}" alt="instagram-social-media">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/channel/UCBjWAxIq6sDuKicnoE4amjg">
+                <img src="{% static 'icons/youtube-symbol 1.svg' %}" alt="youtube-social-media">
+            </a>
+        </li>
+        <li>
+          <a href="https://github.com/NataliSemi">
+              <img src="{% static 'icons/github.svg' %}" alt="youtube-social-media">
+          </a>
+      </li>
+    </ul>
+</footer>
+</html>

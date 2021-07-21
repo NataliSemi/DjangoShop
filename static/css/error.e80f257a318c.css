@@ -1,0 +1,59 @@
+.container-error{
+    min-height: 90vh;
+    background: url("CAR.fc2be3b47e99.jpg") 100% 100% no-repeat, transparent;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+      color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+
+}
+
+.container-error5{
+    min-height: 100vh;
+    background: url("errorR.f8d1085522d9.jpg") transparent;
+
+    background-size: 40% auto;;
+
+      color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.wrong h1{
+    display: flex;
+    text-align: center;
+    margin: 60px auto;
+    font-family: 'Frijole', cursive;
+    font-size: 55px;
+    height: auto;
+
+}
+.return{
+    font-family: 'Frijole', cursive;
+}
+/**/
