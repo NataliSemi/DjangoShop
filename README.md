@@ -7,7 +7,7 @@
  - App also have cart context processor 
  - Recommendation manager uses redis and suggest products based on historical sales
  
- - For payment Braintree
+ - Using Braintree for payamnet
  
  
  
