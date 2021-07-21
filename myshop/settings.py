@@ -14,7 +14,9 @@ import os
 import django_heroku
 from django.utils.translation import gettext_lazy as _
 
-
+import environ
+env = environ.Env()
+env.read_env(env.str('ENV_PATH', '/path/to/.env'))
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'es#5sv4@flq-*6+kk&_)2q&pncww2a=6(arwpei+n#bii2ejy%'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -95,9 +97,9 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd1c9eohsp3ku04',
-        'PASSWORD': '953f25bc2e0800a57a9c25bf69b62a12d86069c27162b880d849281b70463aa3',
-        'USER': 'qvclipmdcuyggs',
+        'NAME': env('NAME_DB'),
+        'PASSWORD': env('PASSWORD_DB'),
+        'USER': env('USER_DB'),
         'HOST': 'ec2-54-242-43-231.compute-1.amazonaws.com',
         'PORT': '5432',
     }
@@ -167,9 +169,9 @@ django_heroku.settings(locals())
 import braintree
 
 #Braintree settings
-BRAINTREE_MERCHANT_ID = 'y3vkmjrjjvw57zqr'
-BRAINTREE_PUBLIC_KEY = 'bzt4mxvqyhnqk489'
-BRAINTREE_PRIVATE_KEY = 'b5fcf9f381e24d405d6bcbcdcf3d0d76'
+BRAINTREE_MERCHANT_ID = env('MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = env('PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = env('PRIVATE_KEY')
 
 
 
@@ -193,9 +195,9 @@ None: (
 }
 
 
-AWS_ACCESS_KEY_ID = "AKIA3NG7K4GZR55H7CY5"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "shoponlineawsbucket"
+AWS_ACCESS_KEY_ID = env('ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('STORAGE_NAME')
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
@@ -219,8 +221,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-REDIS_HOST = 'redis-19198.c263.us-east-1-2.ec2.cloud.redislabs.com'
-REDIS_PASSWORD = 'PsbbRajcbgbnFxSrvCnqXYobn966lhkE'
+REDIS_HOST = env('REDIS_HOST')
+REDIS_PASSWORD = env('REDIS_PASSWORD')
 REDIS_PORT = 19198
 REDIS_DB = 0
 
