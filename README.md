@@ -1,5 +1,7 @@
 # DjangoShop
 
+https://vast-badlands-50781.herokuapp.com/en/
+
 ### What you can do:
  - If you are an admin you can create product, add an image 
  - Image will be downloaded to AWS storage
